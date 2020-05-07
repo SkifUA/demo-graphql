@@ -11,5 +11,11 @@ module Types
       # Rails.logger.info("[User] #{context.inspect}")
       User.find_by_id(id)
     end
+
+    field :users, [Types::UserType], null: false, description: "Users List"
+
+    def users
+      User.all
+    end
   end
 end
