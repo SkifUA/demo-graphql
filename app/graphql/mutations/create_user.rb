@@ -1,10 +1,9 @@
 class Mutations::CreateUser < GraphQL::Schema::Mutation
   null true
 
-  argument :email, String, required: false
-  argument :name, String, required: false
+  argument :user, Types::UserInputType, required: true
 
-  def resolve(email:, name:)
-    User.create(email: email, name: name)
+  def resolve(user:)
+    User.create(user.to_h)
   end
 end
