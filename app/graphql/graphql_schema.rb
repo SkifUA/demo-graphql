@@ -8,4 +8,9 @@ class GraphqlSchema < GraphQL::Schema
 
   # Add built-in connections for pagination
   use GraphQL::Pagination::Connections
+
+
+  def self.unauthorized_object(error)
+    raise GraphQL::ExecutionError, "Permission configuration error"
+  end
 end
