@@ -13,4 +13,10 @@ class Types::UserType < Types::BaseObject
   field :id, ID, null: false
   field :email, String, null: false
   field :name, String, null: true
+
+  field :errors, [Types::ErrorType], null: true
+
+  def errors
+    object.errors.map { |e| { field_name: e, errors: object.errors[e] } }
+  end
 end
