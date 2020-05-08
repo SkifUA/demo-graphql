@@ -17,5 +17,22 @@ module Types
     def users
       User.all
     end
+
+    field :login, String, null: true, description: "Login a user" do
+      argument :email, String, required: true
+      argument :password, String, required: true
+    end
+
+    def login(email:, password:)
+      if (user = User.find_by_email(email)&.authenticate(password))
+        user.jwt!
+      end
+    end
+
+    field :current_user, Types::UserType, null: true, description: "The current User"
+
+    def current_user
+      context[:current_user]
+    end
   end
 end

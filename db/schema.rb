@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_05_07_164040) do
   create_table "users", force: :cascade do |t|
     t.string "email", limit: 127, null: false
     t.string "name", limit: 127
+    t.string "password_digest", limit: 64
     t.text "fb_token"
     t.string "fb_id", limit: 32
     t.string "jti", limit: 64

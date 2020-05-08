@@ -8,9 +8,11 @@ class GraphqlController < ApplicationController
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
+
+    token = request.headers['Authorisation']
+
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+        current_user: User.find_by_jti(token)
     }
     result = GraphqlSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
