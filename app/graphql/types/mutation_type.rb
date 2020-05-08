@@ -10,5 +10,14 @@ class Types::MutationType < Types::BaseObject
     existing = User.find_by_id(user[:id])
     existing&.update(user.to_h)
   end
+
+  field :delete_user, Boolean, null: false, description: "Delete an user"do
+    argument :id, ID, required: true
+  end
+
+  def delete_user(id:)
+    User.where(id: id).destroy_all
+    true
+  end
 end
 
