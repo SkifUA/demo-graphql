@@ -1,54 +1,43 @@
 require 'rails_helper'
 
-
 describe 'mutation createUser', type: :request do
   let(:default_variables) do
     {
-        email: FFaker::Internet.email,
-        name: FFaker::Name.name
+        email: Faker::Internet.email,
+        name: Faker::Name.name
     }
+  end
+  let(:token) do
+    create(:user_default, email: Faker::Internet.email).jwt!
   end
 
   context 'when params are valid' do
     it 'returns auth tokens' do
       graphql_post(
           query: crate_user_mutation,
-          variables: variables
+          variables: variables,
+          headers: { 'Authorization': token }
       )
 
       expect(response.status).to be(200)
+      expect(JSON.parse(response.body)["errors"]).to be_nil
     end
   end
 
-  # context 'when email is not unique' do
-  #   let!(:user_account) { create(:user_account) }
-  #
-  #   it 'returns error data' do
-  #     graphql_post(
-  #         query: user_signup_mutation,
-  #         variables: variables(email: "  #{user_account.email}")
-  #     )
-  #
-  #     expect(response.status).to be(200)
-  #   end
-  # end
-
-  def variables(attributes = {})
-    { input: default_variables.merge(attributes) }
+  context 'when email is not unique' do
+    let!(:user) { create(:user_default) }
+    it 'returns error data' do
+      graphql_post(
+          query: crate_user_mutation,
+          variables: variables(email: user.email),
+          headers: { 'Authorization': token }
+      )
+      expect(response.status).to be(200)
+      expect(JSON.parse(response.body)["errors"]&.length).not_to be(0)
+    end
   end
 
-  def crate_user_mutation
-    %(
-        mutation createUser($user:UserInputType!) {
-          createUser(user: $user) {
-            email
-            name
-            errors {
-              field_name
-              errors
-            }
-          }
-        }
-      )
+  def variables(attributes = {})
+    { user: default_variables.merge(attributes) }
   end
 end

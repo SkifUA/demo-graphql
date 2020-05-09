@@ -33,7 +33,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
   gem 'factory_bot_rails', '~> 5.2'
-  gem 'ffaker', '~> 2.14'
+  gem 'faker', '~> 2.11'
   gem 'rspec-rails', '~> 4.0'
   gem 'database_cleaner', '~> 1.8', '>= 1.8.5'
 end

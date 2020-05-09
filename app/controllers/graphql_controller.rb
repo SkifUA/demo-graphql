@@ -9,7 +9,7 @@ class GraphqlController < ApplicationController
     query = params[:query]
     operation_name = params[:operationName]
 
-    token = request.headers['Authorisation']
+    token = request.headers['Authorization']
 
     context = {
         current_user: User.find_by_jti(token)
