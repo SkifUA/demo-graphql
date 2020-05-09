@@ -9,7 +9,9 @@ module Types
 
     def user(id:)
       # Rails.logger.info("[User] #{context.inspect}")
-      User.find_by_id(id)
+      _user = User.find_by_id(id)
+      return _user if _user.presence
+      raise GraphQL::ExecutionError, "Not found"
     end
 
     field :users, [Types::UserType], null: false, description: "Users List"

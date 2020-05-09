@@ -3,8 +3,12 @@ class Types::UserInputType < GraphQL::Schema::InputObject
   description "User's Attributes for create"
 
   argument :id, ID, required: false
-  argument :email, String, required: false
-  argument :name, String, required: false
+  argument :email, String, required: false,
+           description: "User's email",
+           prepare: ->(v, _ctx) { v.strip }
+  argument :name, String, required: false,
+           description: "User's name",
+           prepare: ->(v, _ctx) { v.strip }
 end
 
 class Types::UserType < Types::BaseObject

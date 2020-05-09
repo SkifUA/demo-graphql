@@ -8,6 +8,7 @@ class GraphqlSchema < GraphQL::Schema
 
   # Add built-in connections for pagination
   use GraphQL::Pagination::Connections
+  # use BatchLoader::GraphQL
 
 
   def self.unauthorized_object(error)
