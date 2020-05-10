@@ -9,10 +9,10 @@ class GraphqlController < ApplicationController
     query = params[:query]
     operation_name = params[:operationName]
 
-    token = request.headers['Authorization']
-
     context = {
-        current_user: User.find_by_jti(token)
+        current_user: current_user,
+        found_refresh_token: found_refresh_token,
+        refresh_token_payload: refresh_token_payload
     }
     result = GraphqlSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result

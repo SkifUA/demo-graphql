@@ -14,22 +14,13 @@ module Types
       raise GraphQL::ExecutionError, "Not found"
     end
 
+
     field :users, [Types::UserType], null: false, description: "Users List"
 
     def users
       User.all
     end
 
-    field :login, String, null: true, description: "Login a user" do
-      argument :email, String, required: true
-      argument :password, String, required: true
-    end
-
-    def login(email:, password:)
-      if (user = User.find_by_email(email)&.authenticate(password))
-        user.jwt!
-      end
-    end
 
     field :current_user, Types::UserType, null: true, description: "The current User"
 
@@ -39,8 +30,5 @@ module Types
 
     field :logout, Boolean, null: false
 
-    def logout
-      !!context[:current_user]&.update(jti: nil)
-    end
   end
 end

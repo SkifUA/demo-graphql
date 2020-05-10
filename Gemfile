@@ -7,6 +7,7 @@ ruby '2.7.0'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
+gem 'redis', '~> 4.1', '>= 4.1.4'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -18,7 +19,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'batch-loader', '~> 1.5'
 
 gem 'graphql', '~> 1.10', '>= 1.10.9'
-gem 'graphql-errors', '~> 0.4.0'
+# gem 'jwt_sessions', '~> 2.5', '>= 2.5.1'
+gem 'jwt_sessions', '2.4.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -31,6 +33,7 @@ gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'bullet', '~> 6.1'
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
   gem 'factory_bot_rails', '~> 5.2'
   gem 'faker', '~> 2.11'

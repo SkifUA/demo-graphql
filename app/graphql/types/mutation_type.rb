@@ -2,6 +2,10 @@ class Types::MutationType < Types::BaseObject
 
   field :create_user, Types::UserType, mutation: Mutations::CreateUser
 
+  field :login, Types::AuthTokenType, mutation: Mutations::User::Login
+
+  field :logout, mutation: Mutations::User::Logout
+
   field :update_user, Boolean, null: false, description: "Update an user" do
     argument :user, Types::UserInputType, required: true
   end
