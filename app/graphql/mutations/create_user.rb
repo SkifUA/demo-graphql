@@ -1,4 +1,4 @@
-class Mutations::CreateUser < GraphQL::Schema::Mutation
+class Mutations::CreateUser < Mutations::BaseMutation
   null true
 
   argument :user, Types::UserInputType, required: true

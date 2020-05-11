@@ -1,6 +1,6 @@
 module Mutations
   module User
-    class Logout < GraphQL::Schema::Mutation
+    class Logout < Mutations::BaseMutation
       null true
 
       type Boolean

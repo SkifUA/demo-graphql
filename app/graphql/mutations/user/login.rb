@@ -1,6 +1,6 @@
 module Mutations
   module User
-    class Login < GraphQL::Schema::Mutation
+    class Login < Mutations::BaseMutation
       null true
 
       argument :input, Types::Inputs::UserLogin, required: true
