@@ -19,8 +19,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'batch-loader', '~> 1.5'
 
 gem 'graphql', '~> 1.10', '>= 1.10.9'
-# gem 'jwt_sessions', '~> 2.5', '>= 2.5.1'
-gem 'jwt_sessions', '2.4.1'
+gem 'jwt_sessions', '~> 2.5', '>= 2.5.1'
+gem 'interactor', '~> 3.1', '>= 3.1.2'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

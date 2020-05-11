@@ -6,8 +6,12 @@ module Mutations
       type Boolean
 
       def resolve
-        session = JWTSessions::Session.new
-        session.flush_by_token(context[:found_refresh_token])
+        operation_result = UserInteractors::Logout.call(refresh_token: refresh_token)
+        if operation_result.success?
+          true
+        else
+          raise GraphQL::ExecutionError, "Login error"
+        end
       end
     end
   end
