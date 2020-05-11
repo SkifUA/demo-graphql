@@ -2,7 +2,7 @@ class Types::MutationType < Types::BaseObject
 
   field :create_user, Types::UserType, mutation: Mutations::CreateUser
 
-  field :login, Types::AuthTokenType, mutation: Mutations::User::Login
+  field :login, mutation: Mutations::User::Login
 
   field :logout, mutation: Mutations::User::Logout
 

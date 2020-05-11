@@ -1,8 +1,16 @@
 module Mutations
-  class BaseMutation < GraphQL::Schema::RelayClassicMutation
-    argument_class Types::BaseArgument
-    field_class Types::BaseField
-    input_object_class Types::BaseInputObject
-    object_class Types::BaseObject
+  class BaseMutation < GraphQL::Schema::Mutation
+
+    def refresh_token_payload
+      context[:refresh_token_payload]
+    end
+
+    def refresh_token
+      context[:found_refresh_token]
+    end
+
+    def current_user
+      context[:current_user]
+    end
   end
 end

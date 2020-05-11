@@ -1,4 +1,4 @@
-module User
+module UserInteractors
   class Login < ApplicationInteractor
     delegate :input, to: :context
 
